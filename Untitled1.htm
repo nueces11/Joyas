@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Tienda de Joyas Rancagua</title>
+    <link rel="stylesheet" href="C:/Users/david/OneDrive/Escritorio/fontawesome-free-6.5.1-web/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #000;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        h1 {
+            color: #000;
+            margin: 0;
+            font-family: 'Georgia', serif;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .cart-button {
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        main {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            position: relative;
+        }
+
+        section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #111;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            text-align: center;
+            color: #fff;
+        }
+
+        .side-box {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            width: 20%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            margin: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .side-box:hover {
+            transform: scale(1.1);
+        }
+
+        .side-box a {
+            text-decoration: none;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .side-box p {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #000;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-icons {
+            margin-right: 10px;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        .detail-page {
+            background-color: #000;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            z-index: 1;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-to-cart {
+            margin-top: 20px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .quantity-selector {
+            margin-top: 10px;
+        }
+
+        #cartPage {
+            display: none;
+        }
+
+        #cartPage ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .new-side-box {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            width: 20%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            margin: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .new-side-box:hover {
+            transform: scale(1.1);
+        }
+
+        .new-side-box a {
+            text-decoration: none;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .horizontal-box-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .horizontal-box-container .new-side-box:nth-child(1) {
+            margin-top: -1365px;
+            margin-bottom: 10px;
+            margin-left: -360px; /* Ajusta el valor según sea necesario para mover Joya 4 más a la izquierda */
+        }
+
+        .horizontal-box-container .new-side-box:nth-child(2) {
+            margin-top: -278px;
+            margin-bottom: 10px;
+            margin-left: -420px; /* Ajusta el valor según sea necesario para mover Joya 4 más a la izquierda */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <h1>Tu Tienda de Joyas Rancagua</h1>
+        <button class="cart-button" onclick="goToCart()">Ir al Carrito</button>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Caja lateral izquierda -->
+        <div class="side-box">
+            <a href="javascript:void(0);" onclick="openDetailPage('joya1')">
+                <h2>Joya 1</h2>
+            </a>
+            <p>Precio: 15.000 CLP</p>
+        </div>
+
+        <!-- Sección principal -->
+        <section>
+            <div>
+                <!-- Contenido principal -->
+                <p style="font-size: 24px; color: #fff; line-height: 1.6;">
+                    Bienvenido a mi tienda de joyas. Descubre cadenas de plata Ley 925 y 950 a precios económicos.
+                    Cada pieza está cuidadosamente seleccionada para brindarte elegancia y estilo.
+                </p>
+                <p style="font-size: 18px; color: #ccc; margin-top: 20px;">Para consultas personales, contáctanos al: [Número de WhatsApp]</p>
+            </div>
+        </section>
+
+        <!-- Caja lateral derecha -->
+        <div class="side-box">
+            <a href="javascript:void(0);" onclick="openDetailPage('joya2')">
+                <h2>Joya 2</h2>
+            </a>
+        </div>
+
+        <!-- Nuevos cuadros blancos en una línea horizontal -->
+        <div class="horizontal-box-container">
+            <div class="new-side-box">
+                <a href="javascript:void(0);" onclick="openDetailPage('joya3')">
+                    <h2>Joya 3</h2>
+                </a>
+            </div>
+
+            <div class="new-side-box">
+                <a href="javascript:void(0);" onclick="openDetailPage('joya4')">
+                    <h2>Joya 4</h2>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Página de detalle de joya -->
+    <div id="detailPage" class="detail-page">
+        <button class="back-button" onclick="goBack()">Volver</button>
+        <h2>Detalles de la joya</h2>
+        <div class="quantity-selector">
+            <label for="quantity">Cantidad:</label>
+            <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <button class="add-to-cart" onclick="addToCart(currentJoya, document.getElementById('quantity').value)">Añadir al carrito</button>
+    </div>
+
+    <!-- Página de carrito -->
+    <div id="cartPage" class="detail-page">
+        <button class="back-button" onclick="goBackFromCart()">Volver</button>
+        <h2>Carrito de Compras</h2>
+        <ul id="cartList"></ul>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="social-icons">
+            <!-- Enlace de Instagram actualizado -->
+            <a href="https://www.instagram.com/_sepulvedaaaa/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>Todos los derechos reservados &copy; 2024</p>
+    </footer>
+
+    <script>
+        var currentJoya = '';
+        var cart = {};
+
+        function openDetailPage(joya) {
+            currentJoya = joya;
+            document.getElementById('detailPage').style.display = 'flex';
+        }
+
+        function goBack() {
+            document.getElementById('detailPage').style.display = 'none';
+        }
+
+        function goToCart() {
+            if (document.getElementById('detailPage').style.display === 'none') {
+                document.getElementById('cartPage').style.display = 'flex';
+                displayCart();
+            }
+        }
+
+        function goBackFromCart() {
+            document.getElementById('cartPage').style.display = 'none';
+        }
+
+        function addToCart(joya, quantity) {
+            if (!cart[joya]) {
+                cart[joya] = 0;
+            }
+            cart[joya] += parseInt(quantity);
+            alert(`Se agregarán ${quantity} unidades de ${joya} al carrito.`);
+            return false;
+        }
+
+        function displayCart() {
+            var cartList = document.getElementById('cartList');
+            cartList.innerHTML = '';
+            for (var joya in cart) {
+                var listItem = document.createElement('li');
+                listItem.textContent = `${joya}: ${cart[joya]} unidades`;
+                cartList.appendChild(listItem);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
